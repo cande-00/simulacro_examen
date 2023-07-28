@@ -102,11 +102,7 @@ class App(customtkinter.CTk):
         
 
     def btn_mostrar_informe_2(self):
-        nombre_electrico = self.lista_nombre_pokemones.index(0)
-        for poder_de_ataque in self.lista_poder_pokemones(0,len(self.lista_poder_pokemones)):
-            if poder_de_ataque > 50:
-                print(f"{nombre_electrico, poder_de_ataque}")
-                
+       pass         
 
     def btn_mostrar_informe_3(self):
         cantidad_pokemones_electricos = 0
