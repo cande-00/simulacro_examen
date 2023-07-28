@@ -99,51 +99,50 @@ class App(customtkinter.CTk):
                 if 100 <= poder_rebajado <= 150:
                     cantidad_pokemones_electricos += 1
         print(f"cantidad de pokemones electricos: {cantidad_pokemones_electricos}")
-        # Informe 1- Tome el ultimo numero de su DNI Personal (Ej 4) y realice ese informe (Ej, Realizar informe 4)
-        # Cantidad de pokemones de tipo Electrico cuyo poder de pelea con un 15% menos este
-        # entre los 100 y los 150 puntos.
         
 
     def btn_mostrar_informe_2(self):
-        nombre_electrico = self.lista_nombre_pokemones.index[0]
+        nombre_electrico = self.lista_nombre_pokemones.index(0)
         for poder_de_ataque in self.lista_poder_pokemones(0,len(self.lista_poder_pokemones)):
             if poder_de_ataque > 50:
                 print(f"{nombre_electrico, poder_de_ataque}")
                 
 
     def btn_mostrar_informe_3(self):
-        #  el promedio de poder de todos los pokemones de tipo Electrico.
-        contador = 0
-        for pokemon in self.lista_nombre_pokemones(0, len(self.lista_nombre_pokemones)):
-            if pokemon == "agua":
-                contador += 1
-            print(f"los tipo agua son en total: {contador}")
+        cantidad_pokemones_electricos = 0
+        suma_poder_electricos = 0
+
+        for i in range(len(self.lista_nombre_pokemones)):
+            if self.lista_tipo_pokemones[i] == "eléctrico":
+                cantidad_pokemones_electricos += 1
+                suma_poder_electricos += self.lista_poder_pokemones[i]
+
+        if cantidad_pokemones_electricos == 0:
+            promedio_poder_electricos = 0
+        else:
+            promedio_poder_electricos = suma_poder_electricos / cantidad_pokemones_electricos
+
+        print(f"el promedio de electrico es: {promedio_poder_electricos}")
+
     
     def btn_cargar_pokedex_on_click(self):
-        pass
-    #     alert("carga","carga")
-    #     # Para ello deberas programar el boton "Cargar Pokedex" para poder cargar 10 pokemones.
-    # # Los datos que deberas pedir para los pokemones son:
-     # * El nombre del pokemon
         for pokemon in range(0,10):
             nombre_pokemon = prompt("Cargar", "Ingrese el nombre")
             while nombre_pokemon == None or not nombre_pokemon.isalpha():
                 nombre_pokemon = prompt("Cargar", "Reingrese el nombre")
             self.lista_nombre_pokemones.append(nombre_pokemon)
             
-     # * El tipo de su elemento (Agua, Psiquico, Electrico)
             tipo_de_ataque = prompt("Cargar", "Ingrese el poder de ataque")
             while tipo_de_ataque == None or not tipo_de_ataque.isalpha() or tipo_de_ataque != "psíquico" or tipo_de_ataque != "agua" or tipo_de_ataque != "eléctrico":
                 tipo_de_ataque = prompt("Cargar", "Reingrese el poder")
             self.lista_tipo_pokemones.append(tipo_de_ataque)
 
-    # * Poder de ataque (validar que sea mayor a 50 y menor a 200)
             poder_de_ataque = prompt("Cargar", "Ingrese el nivel de ataque")
             while poder_de_ataque == None or not poder_de_ataque.isdigit() or int(poder_de_ataque) < 50 or int(poder_de_ataque) > 199:
                 poder_de_ataque = prompt("Cargar", "Reingrese nivel de ataque")
             poder_de_ataque = int(poder_de_ataque)
             self.lista_poder_pokemones.append(poder_de_ataque)
-     # B) Al presionar el boton mostrar se deberan listar los pokemones y su posicion en la lista (por terminal)
+
         pokemon_repetidos = []
         for pokemon in self.lista_nombre_pokemones(0, len(self.lista_nombre_pokemones)):
             print(pokemon)
